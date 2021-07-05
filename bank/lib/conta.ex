@@ -1,7 +1,9 @@
 defmodule Conta do
     defstruct usuario: Usuario, saldo: 1000
-    def cadastrar(usuario), do: %__MODULE__{usuario: usuario}
-
+    def cadastrar(usuario) do
+        File.write
+        %__MODULE__{usuario: usuario}
+    end
     def transferir(contas, de, para, valor) do
         de = Enum.find(contas, fn conta -> conta.usuario.email == de.usuario.email end)
 
@@ -14,6 +16,8 @@ defmodule Conta do
             [de, para]
         end
     end
+
+
 
     def sacar(conta, valor) do
         cond do
